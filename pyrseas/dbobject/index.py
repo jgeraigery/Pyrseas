@@ -171,6 +171,24 @@ class Index(DbSchemaObject):
                 key = rest[:loc] if loc != -1 else rest.lstrip()
                 keyopts = key.split()[1:]
                 key = key.split()[0]
+                # If key is all lowercase inside quotes, then it's a reserved
+                # keyword but we can unqoute so the yaml looks cleaner
+                #
+                # This bandaids over the issue where a reserved keyword as
+                # column name results in different yaml files, causing us to
+                # drop and recreate the index
+                #
+                # We can't always remove quotes since it's possible that the
+                # quotes actually are intentional for casing purposes.
+                # I don't think this causes any bugs with that, but orinoco
+                # will never give us a case sensitive column so we don't have
+                # to worry about it.
+                #
+                # This fix is only for indexes so I presume we'll hit it with
+                # views or something else also
+                if key.startswith('"') and key.endswith('"') and key == key.lower():
+                    key = key[1:-1]
+
                 rest = rest[loc + 1:]
             rest = rest.lstrip()
             skipnext = False
