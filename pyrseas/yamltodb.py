@@ -8,6 +8,10 @@ import sys
 from argparse import FileType
 
 import yaml
+try:
+    from yaml import CLoader as Loader
+except ImportError:
+    from yaml import Loader
 
 from pyrseas import __version__
 from pyrseas.database import Database
@@ -43,7 +47,7 @@ def main():
         inmap = db.map_from_dir()
     else:
         try:
-            inmap = yaml.safe_load(options.spec)
+            inmap = yaml.load(options.spec, Loader=Loader)
         except Exception as exc:
             print("Unable to process the input YAML file")
             print("Error is '%s'" % exc)
