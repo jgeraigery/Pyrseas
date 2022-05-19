@@ -1,3 +1,7 @@
+0.8.13 (18-May-2022)
+
+  * Revert to 0.8.10 as 0.8.12 didn't really work.
+
 0.8.12 (28-Dec-2020)
 
   * Same as 0.8.11 but reverting a commit that I'm not confident in that may or
