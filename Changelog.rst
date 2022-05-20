@@ -1,3 +1,7 @@
+0.8.14 (20-May-2022)
+
+  * Support for PG 14
+
 0.8.13 (18-May-2022)
 
   * Revert to 0.8.10 as 0.8.12 didn't really work.

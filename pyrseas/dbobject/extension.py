@@ -38,7 +38,7 @@ class Extension(DbObject):
         return """
             SELECT extname AS name, nspname AS schema, extversion AS version,
                    rolname AS owner,
-                   obj_description(e.oid, 'pg_extension') AS description, oid
+                   obj_description(e.oid, 'pg_extension') AS description, e.oid
             FROM pg_extension e
                  JOIN pg_roles r ON (r.oid = extowner)
                  JOIN pg_namespace n ON (extnamespace = n.oid)

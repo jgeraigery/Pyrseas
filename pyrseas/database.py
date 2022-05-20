@@ -535,8 +535,7 @@ class Database(object):
 
         langs = self.db.languages if self.db else []
         if self.dbconn:
-            langs = [lang[0] for lang in self.dbconn.fetchall(
-                "SELECT tmplname FROM pg_pltemplate")]
+            langs = ["plpgsql"] # that's the only language we use in our triggers
         self.from_map(input_map, langs)
         if opts.revert:
             (self.db, self.ndb) = (self.ndb, self.db)
