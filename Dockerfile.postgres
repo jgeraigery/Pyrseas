@@ -1,4 +1,4 @@
-FROM circleci/postgres:9.6
+FROM circleci/postgres:13.5
 
 # Needed for tablespace creation
 RUN mkdir -p /extra/pg/ts1 /extra/pg/ts2
