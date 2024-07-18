@@ -6,7 +6,7 @@ jobs:
     working_directory: ~/pyrseas
     docker:  # run the steps with Docker
       # CircleCI Python images available at: https://hub.docker.com/r/circleci/python/
-      - image: circleci/python:3.6
+      - image: circleci/python:3.10
         environment:
           TRAVIS: true # Not actually travis, but need to trigger the appropriate test code
           PIPENV_VENV_IN_PROJECT: true
